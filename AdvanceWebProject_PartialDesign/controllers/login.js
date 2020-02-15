@@ -10,10 +10,10 @@ router.post('/', function(req, res){
 	
 	if(req.body.uname!='' && req.body.password!=''){
 
-		req.session.username = req.body.uname;
+		//req.session.username = req.body.uname;
+		res.cookie('username', req.body.uname);
+		//console.log(req.cookies['username']);
 		res.redirect('/home');
-	}else{
-		res.send('invalid username/password');
 	}
 });
 

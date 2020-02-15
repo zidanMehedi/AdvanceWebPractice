@@ -188,13 +188,13 @@
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <img class="user-avatar rounded-circle mr-2" src="images/avatars/0.jpg" alt="User Avatar">
-                    <span class="d-none d-md-inline-block">Sierra Brooks</span>
+                    <span class="d-none d-md-inline-block"><%= name%></span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-small">
-                    <a class="dropdown-item" href="home.html">
+                    <a class="dropdown-item" href="/home">
                       <i class="material-icons">&#xE7FD;</i> Profile</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="/login">
+                    <a class="dropdown-item text-danger" href="/logout">
                       <i class="material-icons text-danger">&#xE879;</i> Logout </a>
                   </div>
                 </li>
@@ -228,7 +228,7 @@
                 <div class="card card-small mb-4 pt-3">
                   <div class="card-header border-bottom text-center">
                     <div class="mb-3 mx-auto">
-                      <img class="rounded-circle" src="images/avatars/0.jpg" alt="User Avatar" width="110">
+                      <img class="rounded-circle" src="/images/avatars/0.jpg" alt="User Avatar" width="110">
                     </div>
                     <h4 class="mb-0">Sierra Brooks</h4>
                     <h6 class="mb-0">sierra@domain.com</h6>
@@ -240,7 +240,7 @@
                         <tr>
                           <td>Student ID</td>
                           <td>:</td>
-                          <td>17-xxxxx-1</td>
+                          <td><%= name%></td>
                         </tr>
                         <tr>
                           <td>Department</td>
@@ -303,7 +303,7 @@
                     <li class="list-group-item p-3">
                       <div class="row">
                         <div class="col">
-                          <form>
+                          <form method="post">
                             <div class="form-row">
                               <div class="form-group col-md-6">
                                 <label for="feFirstName">First Name</label>
@@ -315,7 +315,7 @@
                             <div class="form-row">
                               <div class="form-group col-md-6">
                                 <label for="feEmailAddress">ID</label>
-                                <input type="text" class="form-control" id="feId" placeholder="xx-xxxxx-x" value="17-xxxxx-1"> </div>
+                                <input type="text" class="form-control" id="feId" placeholder="xx-xxxxx-x" value="<%= name%>"> </div>
                               <div class="form-group col-md-6">
                                 <label for="fePassword">Department</label>
                                 <input type="text" class="form-control" id="feDept" placeholder="CSE"> </div>
