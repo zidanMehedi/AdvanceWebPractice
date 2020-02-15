@@ -28,9 +28,9 @@ app.use('/home', home);
 app.use('/logout', logout);
 
 /*app.use('/upload', upload);
-app.use('/download', download);
+app.use('/download', download);*/
 app.use('/reg', reg);
-app.use('/topics', topics);
+/*app.use('/topics', topics);
 app.use('/cngPass', cngPass);
 app.use('/research', research);*/
 
