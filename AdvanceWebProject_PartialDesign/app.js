@@ -26,15 +26,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(exSession({secret: 'my top secret value', saveUninitialized: true, resave: false}));
 app.use('/login', login);
+app.use('/', login);
 app.use('/home', home);
 app.use('/logout', logout);
-
-/*app.use('/upload', upload);
-app.use('/download', download);*/
-app.use('/reg', reg);
-/*app.use('/topics', topics);
 app.use('/cngPass', cngPass);
-app.use('/research', research);*/
+app.use('/upload', upload);
+app.use('/download', download);
+app.use('/reg', reg);
+app.use('/topics', topics);
+app.use('/research', research);
 
 
 //routes

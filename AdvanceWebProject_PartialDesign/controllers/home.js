@@ -15,5 +15,19 @@ router.get('/',function(req,res){
 	}
 });
 
+router.post('/',function(req,res){
+	if(req.cookies['username']!=null)
+	{
+		var data={
+		name: req.cookies['username']
+		}
+		console.log('login page requested!');
+	
+		res.render('home',data);
+	}else{
+		res.redirect('/logout');
+	}
+});
+
 
 module.exports = router;
