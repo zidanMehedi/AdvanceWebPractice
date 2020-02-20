@@ -188,7 +188,7 @@
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <img class="user-avatar rounded-circle mr-2" src="/images/avatars/0.jpg" alt="User Avatar">
-                    <span class="d-none d-md-inline-block"><%= name%></span>
+                    <span class="d-none d-md-inline-block"><%= user.userid%></span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-small">
                     <a class="dropdown-item" href="/home">
@@ -230,8 +230,8 @@
                     <div class="mb-3 mx-auto">
                       <img class="rounded-circle" src="/images/avatars/0.jpg" alt="User Avatar" width="110">
                     </div>
-                    <h4 class="mb-0">Sierra Brooks</h4>
-                    <h6 class="mb-0">sierra@domain.com</h6>
+                    <h4 class="mb-0"><%= user.fname%>&ensp;<%= user.lname%></h4>
+                    <h6 class="mb-0"><%=user.email%></h6>
                     <div style="width: 100%" class="rw">
                       <table border="0px" width="100%">
                         <tr>
@@ -240,28 +240,28 @@
                         <tr>
                           <td>Student ID</td>
                           <td>:</td>
-                          <td><%= name%></td>
+                          <td><%= user.userid%></td>
                         </tr>
                         <tr>
                           <td>Department</td>
                           <td>:</td>
-                          <td>CSE</td>
+                          <td><%= user.dept%></td>
                         </tr>
                         <tr>
                           <td>CGPA</td>
                           <td>:</td>
-                          <td>4.00</td>
+                          <td><%= user.cgpa%></td>
                         </tr>
                         <tr>
                           <td>Credit</td>
                           <td>:</td>
-                          <td>131</td>
+                          <td><%= user.credit%></td>
                         </tr>
                         
                         <tr>
                           <td>Contact</td>
                           <td>:</td>
-                          <td>017XXXXXXXX</td>
+                          <td><%= user.contact%></td>
                         </tr>
                          <tr>
                           <td colspan="3" height="67px"></td>
@@ -307,34 +307,34 @@
                             <div class="form-row">
                               <div class="form-group col-md-6">
                                 <label for="feFirstName">First Name</label>
-                                <input type="text" class="form-control" id="feFirstName" placeholder="First Name" value="Sierra"> </div>
+                                <input type="text" class="form-control" id="feFirstName" name="fname" placeholder="First Name" value="<%= user.fname%>"> </div>
                               <div class="form-group col-md-6">
                                 <label for="feLastName">Last Name</label>
-                                <input type="text" class="form-control" id="feLastName" placeholder="Last Name" value="Brooks"> </div>
+                                <input type="text" class="form-control" id="feLastName" name="lname" placeholder="Last Name" value="<%= user.lname%>"> </div>
                             </div>
                             <div class="form-row">
                               <div class="form-group col-md-6">
                                 <label for="feEmailAddress">ID</label>
-                                <input type="text" class="form-control" id="feId" placeholder="xx-xxxxx-x" value="<%= name%>"> </div>
+                                <input type="text" class="form-control" id="feId" name="userid" placeholder="xx-xxxxx-x" value="<%= user.userid%>" disabled> </div>
                               <div class="form-group col-md-6">
                                 <label for="fePassword">Department</label>
-                                <input type="text" class="form-control" id="feDept" placeholder="CSE"> </div>
+                                <input type="text" class="form-control" id="feDept" name="dept" placeholder="CSE" value="<%= user.dept%>"> </div>
                             </div>
                             <div class="form-row">
                               <div class="form-group col-md-6">
                                 <label for="feEmailAddress">CGPA</label>
-                                <input type="text" class="form-control" id="feCGPA" placeholder="CGPA" value="4.00"> </div>
+                                <input type="text" class="form-control" id="feCGPA" name="cgpa" placeholder="CGPA" value="<%= user.cgpa%>" ></div>
                               <div class="form-group col-md-6">
                                 <label for="fePassword">Credit</label>
-                                <input type="text" class="form-control" id="feCredit" placeholder="Credit"> </div>
+                                <input type="text" class="form-control" id="feCredit" name="credit" placeholder="Credit" value="<%= user.credit%>"> </div>
                             </div>
                             <div class="form-row">
                               <div class="form-group col-md-6">
                                 <label for="feEmailAddress">Email</label>
-                                <input type="email" class="form-control" id="feEmailAddress" placeholder="Email" value="sierra@example.com"> </div>
+                                <input type="email" class="form-control" id="feEmailAddress" name="email" placeholder="Email" value="<%= user.email%>" disabled> </div>
                               <div class="form-group col-md-6">
                                 <label for="fePassword">Contact Number</label>
-                                <input type="text" class="form-control" id="feCon" placeholder="+88017XXXXXXXX"> </div>
+                                <input type="text" class="form-control" id="feCon" name="contact" placeholder="+88017XXXXXXXX" value="<%= user.contact%>"> </div>
                             </div>
                             <!--   <div class="form-group">
                               <label for="feInputAddress">Address</label>

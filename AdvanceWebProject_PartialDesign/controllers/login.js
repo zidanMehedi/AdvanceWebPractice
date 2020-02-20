@@ -1,4 +1,5 @@
 var express = require('express');
+const model_login= require.main.require('./models/model_login');
 var router = express.Router();
 
 router.get('/',function(req,res){
@@ -7,14 +8,18 @@ router.get('/',function(req,res){
 });
 
 router.post('/', function(req, res){
-	
-	if(req.body.uname!='' && req.body.password!=''){
-
-		//req.session.username = req.body.uname;
-		res.cookie('username', req.body.uname);
-		//console.log(req.cookies['username']);
-		res.redirect('/home');
+	var user={
+		userid:req.body.userid,
+		password:req.body.password
 	}
+	model_login.validate(user,function(results){
+		if(results){
+			res.cookie('username', req.body.userid);
+			res.redirect('/home');
+		}else{
+			res.redirect('/login');
+		}
+	});
 });
 
 module.exports = router;
