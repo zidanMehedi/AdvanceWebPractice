@@ -9,7 +9,7 @@ router.get('/',function(req,res){
 		}
 		console.log('login page requested!');
 	
-		res.render('home',data);
+		res.render('home/index',data);
 	}else{
 		res.redirect('/logout');
 	}
@@ -23,7 +23,7 @@ router.post('/',function(req,res){
 		}
 		console.log('login page requested!');
 	
-		res.render('home',data);
+		res.render('home/index',data);
 	}else{
 		res.redirect('/logout');
 	}

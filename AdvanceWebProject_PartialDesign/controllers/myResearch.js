@@ -9,7 +9,7 @@ router.get('/',function(req,res){
 		}
 		console.log('myResearch page requested!');
 	
-		res.render('myResearch',data);
+		res.render('myResearch/index',data);
 	}else{
 		res.redirect('/logout');
 	}

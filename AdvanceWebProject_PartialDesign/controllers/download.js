@@ -9,7 +9,7 @@ router.get('/',function(req,res){
 		}
 		console.log('login page requested!');
 	
-		res.render('download',data);
+		res.render('download/index',data);
 	}else{
 		res.redirect('/logout');
 	}

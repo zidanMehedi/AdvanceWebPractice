@@ -9,7 +9,7 @@ router.get('/',function(req,res){
 		}
 		console.log('upload page requested!');
 	
-		res.render('upload',data);
+		res.render('upload/index',data);
 	}else{
 		res.redirect('/logout');
 	}

@@ -10,7 +10,7 @@ router.get('/',function(req,res){
 		}
 		console.log('changePassword page requested!');
 	
-		res.render('changePassword',data);
+		res.render('changePassword/index',data);
 	}else{
 		res.redirect('/logout');
 	}
@@ -24,7 +24,7 @@ router.post('/',function(req,res){
 		}
 		console.log('changePassword page requested!');
 	
-		res.render('changePassword',data);
+		res.render('changePassword/index',data);
 	}else{
 		res.redirect('/logout');
 	}

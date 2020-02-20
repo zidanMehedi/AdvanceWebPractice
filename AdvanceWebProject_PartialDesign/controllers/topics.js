@@ -9,7 +9,7 @@ router.get('/',function(req,res){
 		}
 		console.log('topic page requested!');
 	
-		res.render('topics',data);
+		res.render('topics/index',data);
 	}else{
 		res.redirect('/logout');
 	}
