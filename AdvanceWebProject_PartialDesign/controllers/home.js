@@ -30,7 +30,11 @@ router.post('/',function(req,res){
 			contact:req.body.contact
 		}
 		model_user.update(user,function(results){
-			res.redirect('/home');
+			if(status){
+				res.redirect('/home');
+			}else{
+				
+			}
 		});
 	}else{
 		res.redirect('/logout');

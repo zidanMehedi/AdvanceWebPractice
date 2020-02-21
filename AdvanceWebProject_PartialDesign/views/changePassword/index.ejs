@@ -166,7 +166,7 @@
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <img class="user-avatar rounded-circle mr-2" src="/images/avatars/0.jpg" alt="User Avatar">
-                    <span class="d-none d-md-inline-block"><%=name%></span>
+                    <span class="d-none d-md-inline-block"><%= userid%></span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-small">
                     <a class="dropdown-item" href="/home">
@@ -194,16 +194,16 @@
        
        <form class="login100-form validate-form" method="post">
          <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
-           <input class="input100" type="password" name="pass" placeholder="Old password">
+           <input class="input100" type="password" name="opass" placeholder="Old password">
            <span class="focus-input100 "></span>
          </div>
        
          <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
-           <input class="input100" type="password" name="pass" placeholder="New password">
+           <input class="input100" type="password" name="npass" placeholder="New password">
            <span class="focus-input100"></span>
          </div>
          <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
-           <input class="input100" type="password" name="pass" placeholder="Confirm New password">
+           <input class="input100" type="password" name="cnpass" placeholder="Confirm New password">
            <span class="focus-input100"></span>
          </div>
          <div id="login100-form-Btn" style="margin-top: 50px; margin-left: 190px">
