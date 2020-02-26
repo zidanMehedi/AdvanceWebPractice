@@ -1,9 +1,9 @@
 var db = require('./db');
 
 module.exports ={
-	getById: function(user, callback){
+	getById: function(id, callback){
 		var sql = "select * from user where id=?";
-		db.getResult(sql, [user.id], function(result){
+		db.getResult(sql, [id], function(result){
 
 			if(result.length > 0){
 				callback(result[0]);

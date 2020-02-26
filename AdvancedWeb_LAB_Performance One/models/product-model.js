@@ -64,7 +64,7 @@ module.exports ={
 	},
 	update: function(userUpdate, callback){
 		var sql = "update product set name=?, quantity=?, price=? where id=?";
-		db.execute(sql,[userUpdate.name,userUpdate.quantity,userUpdate.price,,userUpdate.id], function(status){
+		db.execute(sql,[userUpdate.name,userUpdate.quantity,userUpdate.price,userUpdate.id], function(status){
 			if(status){
 				callback(true);
 			}else{
