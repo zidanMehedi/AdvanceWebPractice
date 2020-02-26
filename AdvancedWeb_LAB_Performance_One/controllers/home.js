@@ -2,17 +2,19 @@ var express 	= require('express');
 var router 		= express.Router();
 var userModel   = require.main.require('./models/user-model');
 
+router.get('*',function(req,res,next){
+	if(req.cookies['username']!=null){
+		next();
+	}else{
+		res.redirect('/login');
+	}
+});
+
 router.get('/', function(req, res){
-	
-	if(req.cookies['username'] != null){
 		
 		userModel.getByUname(req.cookies['username'], function(result){
-			res.render('home/index', {user: result});
-		});
-
-	}else{
-		res.redirect('/logout');
-	}
+		res.render('home/index', {user: result});
+	});
 });
 
 router.get('/alluser', function(req, res){
@@ -29,12 +31,12 @@ router.get('/alluser', function(req, res){
 router.get('/delete/:id', function(req, res){
  	var id = req.params.id;
 	userModel.delete(id,function(result){
-		if(result){
-			res.redirect('../alluser');
-		}else{
-			res.send('invalid username/password');
-		}
-	});
+	if(result){
+		res.redirect('../alluser');
+	}else{
+		res.send('invalid username/password');
+	}
+});
 });
 
 router.get('/edit/:id', function(req, res){
