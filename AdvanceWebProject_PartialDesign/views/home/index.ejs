@@ -207,12 +207,64 @@
             </nav>
           </div>
           <!-- / .main-navbar -->
+
+          <%if(!error.fname && !error.lname && !error.dept && !error.cgpa && !error.credit){%>
           <div class="alert alert-success alert-dismissible fade show mb-0 btn-accent" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
             <i class="fa fa-check mx-2"></i>
-            <strong>Success!</strong> Your profile has been updated! </div>
+            <strong>Success!</strong> Your profile has been updated!
+          </div>
+          <%}else if(error.fname){%>
+          <div style="background-color: red" class="alert alert-success alert-dismissible fade show mb-0 btn-accent" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <i class="fa fa-check mx-2"></i>
+            <strong>Alert!</strong> <%=error.fname.msg%>!
+          </div>
+           <%}else if(error.lname){%>
+          <div style="background-color: red" class="alert alert-success alert-dismissible fade show mb-0 btn-accent" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <i class="fa fa-check mx-2"></i>
+            <strong>Alert!</strong> <%=error.lname.msg%>!
+          </div>
+           <%}else if(error.dept){%>
+          <div style="background-color: red" class="alert alert-success alert-dismissible fade show mb-0 btn-accent" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <i class="fa fa-check mx-2"></i>
+            <strong>Alert!</strong> <%=error.dept.msg%>!
+          </div>
+          <%}else if(error.cgpa){%>
+          <div style="background-color: red" class="alert alert-success alert-dismissible fade show mb-0 btn-accent" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <i class="fa fa-check mx-2"></i>
+            <strong>Alert!</strong> <%=error.cgpa.msg%>!
+          </div>
+          <%}else if(error.credit){%>
+          <div style="background-color: red" class="alert alert-success alert-dismissible fade show mb-0 btn-accent" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <i class="fa fa-check mx-2"></i>
+            <strong>Alert!</strong> <%=error.credit.msg%>!
+          </div>
+          <%}else{%>
+          <div class="alert alert-success alert-dismissible fade show mb-0 btn-accent" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+            <i class="fa fa-check mx-2"></i>
+            <strong><%=title%></strong>
+          </div>
+          <%}%>
           <div class="main-content-container container-fluid px-4">
             <!-- Page Header -->
             <div class="page-header row no-gutters py-4">
@@ -315,7 +367,7 @@
                             <div class="form-row">
                               <div class="form-group col-md-6">
                                 <label for="feEmailAddress">ID</label>
-                                <input type="text" class="form-control" id="feId" name="userid" placeholder="xx-xxxxx-x" value="<%= user.userid%>" disabled> </div>
+                                <input type="text" class="form-control" id="feId" name="userid" placeholder="xx-xxxxx-x" value="<%= user.userid%>" readonly> </div>
                               <div class="form-group col-md-6">
                                 <label for="fePassword">Department</label>
                                 <input type="text" class="form-control" id="feDept" name="dept" placeholder="CSE" value="<%= user.dept%>"> </div>
@@ -331,7 +383,7 @@
                             <div class="form-row">
                               <div class="form-group col-md-6">
                                 <label for="feEmailAddress">Email</label>
-                                <input type="email" class="form-control" id="feEmailAddress" name="email" placeholder="Email" value="<%= user.email%>" disabled> </div>
+                                <input type="email" class="form-control" id="feEmailAddress" name="email" placeholder="Email" value="<%= user.email%>" readonly> </div>
                               <div class="form-group col-md-6">
                                 <label for="fePassword">Contact Number</label>
                                 <input type="text" class="form-control" id="feCon" name="contact" placeholder="+88017XXXXXXXX" value="<%= user.contact%>"> </div>
