@@ -2,8 +2,8 @@ var db = require('./db');
 
 module.exports ={
 	getById: function(userid, callback){
-		var sql = "select * from users where userid='"+userid+"'";
-		db.getResult(sql, function(result){
+		var sql = "select * from students where userid=?";
+		db.getResult(sql, [userid], function(result){
 
 			if(result.length > 0){
 				callback(result[0]);
@@ -13,8 +13,8 @@ module.exports ={
 		});
 	},
 	validate: function(user, callback){
-		var sql = "select * from users where userid='"+user.userid+"' and password='"+user.password+"'";
-		db.getResult(sql, function(result){
+		var sql = "select * from students where userid=? and password=?";
+		db.getResult(sql, [user.userid,user.userid], function(result){
 			if(result.length > 0){
 				callback(true);
 			}else{
@@ -23,8 +23,8 @@ module.exports ={
 		});
 	},
 	getAll:function(callback){
-		var sql = "select * from users";
-		db.getResult(sql, function(results){
+		var sql = "select * from students";
+		db.getResult(sql, null, function(results){
 			if(results.length > 0){
 				callback(results);
 			}else{
@@ -33,8 +33,8 @@ module.exports ={
 		});
 	},
 	insert: function(user, callback){
-		var sql = "INSERT INTO users (`id`, `userid`, `fname`, `lname`, `email`, `contact`, `dept`, `cgpa`, `credit`) VALUES ('','"+user.userid+"','"+user.fname+"','"+user.lname+"','"+user.email+"','"+user.contact+"','"+user.dept+"','"+user.cgpa+"','"+user.credit+"')";
-		db.execute(sql, function(status){
+		var sql = "INSERT INTO students (`id`, `userid`, `fname`, `lname`, `email`, `contact`, `dept`,`credit`, `cgpa`, ) VALUES (?,?,?,?,?,?,?,?,?)";
+		db.execute(sql,['',user.userid,user.fname,user.lname,user.email,user.contact,user.dept,user.credit,user.cgpa,user.regDate,user.status], function(status){
 			if(status){
 				callback(true);
 			}else{
@@ -43,8 +43,8 @@ module.exports ={
 		});
 	},
 	delete: function(user, callback){
-		var sql = "delete from user values()...........";
-		db.execute(sql, function(status){
+		var sql = "delete from user values";
+		db.execute(sql, [],function(status){
 			if(status){
 				callback(true);
 			}else{
@@ -53,8 +53,8 @@ module.exports ={
 		});
 	},
 	update: function(user, callback){
-		var sql = "update users set fname='"+user.fname+"', lname='"+user.lname+"', contact='"+user.contact+"', dept='"+user.dept+"', cgpa='"+user.cgpa+"', credit='"+user.credit+"' where userid='"+user.userid+"'";
-		db.execute(sql, function(status){
+		var sql = "update students set fname=?, lname=?, contact=?, dept=?, cgpa=?, credit=? where userid=?";
+		db.execute(sql, [user.fname,user.lname,user.contact,user.dept,user.cgpa,user.credit,user.userid],function(status){
 			if(status){
 				callback(true);
 			}else{

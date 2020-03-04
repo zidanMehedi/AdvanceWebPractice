@@ -12,7 +12,7 @@ router.use(express.static(__dirname+'./public'));
 var Storage=multer.diskStorage({
 	destination:'./public/upload/student',
 	filename:function(req,file,callback){
-		callback(null,file.filename+'_'+Date.now()+path.extname(file.originalname));
+		callback(null,file.fieldname+'_'+Date.now()+path.extname(file.originalname));
 	}
 })
 

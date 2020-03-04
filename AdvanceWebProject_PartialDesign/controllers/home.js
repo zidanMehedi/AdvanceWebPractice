@@ -12,7 +12,8 @@ router.get('/',
 	check('dept','Department is Empty').isEmpty(),
 	check('cgpa','CGPA is Empty').isEmpty(),
 	check('credit','Credit is Empty').isEmpty(),
-	check('contact','Contact Number is Empty').isEmpty()
+	check('contact','Contact Number is Empty').isEmpty(),
+	check('regDate','Registration Date is Empty').isEmpty()
 	],function(req,res){
 	var errors = validationResult(req);
 	var data=matchedData(req);
@@ -23,7 +24,7 @@ router.get('/',
 			console.log('login page requested!');
 			model_user.getById(req.cookies['username'],function(results){
 			//console.log(results);
-			res.render('home/index',{title: 'Welcome',user:results, error:errors.mapped()});
+			res.render('home/index',{title: 'Welcome',user:results, error:errors.mapped() , moment:require('moment'), check:false});
 		});
 	}else{
 		res.redirect('/logout');
@@ -38,7 +39,8 @@ router.post('/',
 	check('dept','Department is Empty').not().isEmpty(),
 	check('cgpa','CGPA is Empty').not().isEmpty(),
 	check('credit','Credit is Empty').not().isEmpty(),
-	check('contact','Contact Number is Empty').not().isEmpty()
+	check('contact','Contact Number is Empty').not().isEmpty(),
+	check('regDate','Registration Date is Empty').not().isEmpty()
 	],function(req,res){
 	if(req.cookies['username']!=null)
 	{
@@ -51,7 +53,8 @@ router.post('/',
 			dept:req.body.dept,
 			cgpa:req.body.cgpa,
 			credit:req.body.credit,
-			contact:req.body.contact
+			contact:req.body.contact,
+			regDate:req.body.regDate
 		}
 		var errors = validationResult(req);
 		var data=matchedData(req);
@@ -59,11 +62,11 @@ router.post('/',
 		console.log(data);
 		if(!errors.isEmpty())
 		{
-			res.render('home/index',{user:data, error:errors.mapped()});	
+			res.render('home/index',{title: 'Welcome',user:data, error:errors.mapped(),moment:require('moment'),check:true});	
 		}else{
 			model_user.update(user,function(status){
 			if(status){
-				res.render('home/index',{title: 'Welcome',user:data, error:errors.mapped()});
+				res.render('home/index',{title: 'Welcome',user:data, error:errors.mapped() ,moment:require('moment'),check:true});
 			}
 		});
 		}
