@@ -15,6 +15,14 @@ router.get('/',function(req,res){
 					console.log('login page requested!');
 				
 					res.render('download/index',data);
+			}else{
+				var data={
+					name: req.cookies['username'],
+					user:result
+					}
+					console.log('login page requested!');
+				
+					res.render('download/index',data);
 			}
 		});
 		

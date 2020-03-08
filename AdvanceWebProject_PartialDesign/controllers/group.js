@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var SimpleCrypto = require("simple-crypto-js").default;
+
 const model_topic= require.main.require('./models/model_topic');
 const model_group= require.main.require('./models/model_group');
 const model_user= require.main.require('./models/model_user');
-var _secretKey = "Katon! Gokakyu no Jutsu";
+
  
-var simpleCrypto = new SimpleCrypto(_secretKey);
+
 
 router.get('/createGroup',function(req,res){
 	if(req.cookies['username']!=null)
