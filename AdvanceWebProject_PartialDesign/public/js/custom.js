@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
 	$('.goHome').on('click',function goHome(){
      	window.location='http://localhost:4000/home';
@@ -24,4 +25,16 @@ function apply(value){
 
 function addMember(value){
     window.location='http://localhost:4000/group/addMember/'+value;
+}
+
+function groupDetails(value){
+    window.location='http://localhost:4000/group';
+}
+
+function memberDetails(value){
+    window.location='http://localhost:4000/group/memberDetails/'+value;
+}
+
+function download(value){
+    window.location='http://localhost:4000/download/download/'+value;
 }

@@ -259,6 +259,7 @@
                           <th scope="col" class="border-0">Topic Name</th>
                           <th scope="col" class="border-0">Supervisor</th>
                           <th scope="col" class="border-0">Status</th>
+                          <th scope="col" class="border-0">Action</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -279,6 +280,9 @@
                       <td><%=topic.supervisor%></td>
                       <%}%>
                       <td><%=user[i].status%></td>
+                      <td>
+                        <button class="btn btn-info" value="<%=user[i].userid%>" onclick="memberDetails(this.value)"><i class="fas fa-eye" style="margin-right: 5px;margin-left: -5px"></i>Details</button>
+                      </td>
                    </tr>
                    <%}%>
                    <!--   <tr>
@@ -296,7 +300,7 @@
                   <%if(user.length<4){%>
                   <form method="post" action="/group/addMember">
                     <div style="width: 100%;">
-                      <div style="width: 95%">
+                      <div style="width: 98%">
                         <div style="width: 100%">
                           <input type="submit" name="add" value="Add" class="btn btn-accent" style="height: 35px; margin-bottom: 4px; float: right; margin-left: 3px">
                       </div>
@@ -304,6 +308,11 @@
                         </div>
                        <input type="text" placeholder="Enter User ID" class="input100" name="addmember" style="height: 34px; float: right">
                     </div>
+                    <%if(msg==null){%>
+                    <div style="padding-top: 50px; width: 90%"><span style="float: right;">Invalid User ID</span></div>
+                    <%}else{%>
+                    <div></div>
+                    <%}%>
                   </form>
                   <%}%>
                   <%}%>

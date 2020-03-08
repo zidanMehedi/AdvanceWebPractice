@@ -1,8 +1,12 @@
 var express = require('express');
 var router = express.Router();
+var SimpleCrypto = require("simple-crypto-js").default;
 const model_topic= require.main.require('./models/model_topic');
 const model_group= require.main.require('./models/model_group');
 const model_user= require.main.require('./models/model_user');
+var _secretKey = "Katon! Gokakyu no Jutsu";
+ 
+var simpleCrypto = new SimpleCrypto(_secretKey);
 
 router.get('/createGroup',function(req,res){
 	if(req.cookies['username']!=null)
@@ -32,7 +36,32 @@ router.get('/',function(req,res){
 				model_group.getById(req.cookies['username'],function(resultss){
 			//console.log(resultss[0].tid);
 			model_topic.getById(resultss[0].tid,function(result){
-				res.render('createGroup/myGroup',{name:req.cookies['username'], user:results, topic:result});
+				res.render('createGroup/myGroup',{name:req.cookies['username'], user:results, topic:result , msg:' '});
+				console.log(result);
+			});
+		});
+		}else{
+			res.redirect('/group/createGroup')
+		}
+		//console.log(results);
+		});
+		console.log('topic page requested!');
+		
+		
+	}else{
+		res.redirect('/logout');
+	}
+});
+
+router.get('/addMember',function(req,res){
+	if(req.cookies['username']!=null)
+	{
+		model_group.getByGroupId(req.cookies['username'],function(results){
+		if(results!=null){
+				model_group.getById(req.cookies['username'],function(resultss){
+			//console.log(resultss[0].tid);
+			model_topic.getById(resultss[0].tid,function(result){
+				res.render('createGroup/myGroup',{name:req.cookies['username'], user:results, topic:result , msg:' '});
 				console.log(result);
 			});
 		});
@@ -83,7 +112,38 @@ router.post('/createGroup',function(req,res){
 router.post('/addMember',function(req,res){
 	if(req.cookies['username']!=null)
 	{
-			model_group.getById(req.cookies['username'],function(results){
+		model_user.getById(req.body.addmember,function(valid){
+			if(valid==null){
+				model_group.getById(req.cookies['username'],function(results){
+				
+					if(results!=null){
+						user={
+						groupId:results[0].group_id,
+						topicId:results[0].tid,
+						external:results[0].external,
+						userid:req.body.addmember
+					}
+					model_group.getByGroupId(req.cookies['username'],function(results){
+						if(results!=null){
+								model_group.getById(req.cookies['username'],function(resultss){
+							//console.log(resultss[0].tid);
+							model_topic.getById(resultss[0].tid,function(result){
+								res.render('createGroup/myGroup',{name:req.cookies['username'], user:results, topic:result , msg:valid});
+								console.log(result);
+							});
+						});
+						}else{
+							res.redirect('/group/createGroup')
+						}
+						//console.log(results);
+						});
+					console.log(user);
+				}else{
+					res.redirect('/group/createGroup');
+				}
+				});
+			}else{
+				model_group.getById(req.cookies['username'],function(results){
 				
 				if(results!=null){
 					user={
@@ -101,6 +161,26 @@ router.post('/addMember',function(req,res){
 				res.redirect('/group/createGroup');
 			}
 			});
+			}
+		});
+			/*model_group.getById(req.cookies['username'],function(results){
+				
+				if(results!=null){
+					user={
+					groupId:results[0].group_id,
+					topicId:results[0].tid,
+					external:results[0].external,
+					userid:req.body.addmember
+				}
+				model_group.insert(user,function(results){
+						res.redirect('/group');
+						//console.log(results);
+					});
+				console.log(user);
+			}else{
+				res.redirect('/group/createGroup');
+			}
+			});*/
 		
 		console.log('topic page requested!');
 		
@@ -139,5 +219,22 @@ router.post('/addMember',function(req,res){
 	}
 });*/
 
+router.get('/memberDetails/:id',function(req,res){
+	if(req.cookies['username']!=null)
+	{
+		model_user.getById(req.params.id,function(results){
+		if(results!=null){
+			res.render('createGroup/memberDetails',{name:req.cookies['username'], user:results});
+				console.log(results);
+			}
+		});
+		//console.log(results);
+		console.log('topic page requested!');
+		
+		
+	}else{
+		res.redirect('/logout');
+	}
+});
 
 module.exports = router;
