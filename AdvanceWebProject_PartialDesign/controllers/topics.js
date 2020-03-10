@@ -3,6 +3,14 @@ var router = express.Router();
 const model_topic= require.main.require('./models/model_topic');
 const model_group= require.main.require('./models/model_group');
 
+router.get('*',function(req,res,next){
+	if(req.cookies['username']!=null){
+		next();
+	}else{
+		res.redirect('/login');
+	}
+});
+
 router.get('/',function(req,res){
 	if(req.cookies['username']!=null)
 	{

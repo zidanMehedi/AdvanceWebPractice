@@ -6,7 +6,13 @@ const model_group= require.main.require('./models/model_group');
 const model_user= require.main.require('./models/model_user');
 
  
-
+router.get('*',function(req,res,next){
+	if(req.cookies['username']!=null){
+		next();
+	}else{
+		res.redirect('/login');
+	}
+});
 
 router.get('/createGroup',function(req,res){
 	if(req.cookies['username']!=null)
@@ -152,14 +158,33 @@ router.post('/addMember',function(req,res){
 					external:results[0].external,
 					userid:req.body.addmember
 				}
-				model_group.insert(user,function(results){
+				model_group.getById(req.body.addmember,function(exist){
+					if(exist==null){
+						model_group.insert(user,function(results){
 						res.redirect('/group');
 						//console.log(results);
 					});
-				console.log(user);
-			}else{
-				res.redirect('/group/createGroup');
-			}
+					console.log(user);
+					}else{
+						model_group.getByGroupId(req.cookies['username'],function(results){
+						if(results!=null){
+								model_group.getById(req.cookies['username'],function(resultss){
+							//console.log(resultss[0].tid);
+							model_topic.getById(resultss[0].tid,function(result){
+								res.render('createGroup/myGroup',{name:req.cookies['username'], user:results, topic:result , msg:null});
+								console.log(result);
+							});
+						});
+						}else{
+							res.redirect('/group/createGroup')
+						}
+						//console.log(results);
+						});
+					}
+				})
+				}else{
+					res.redirect('/group/createGroup');
+				}
 			});
 			}
 		});

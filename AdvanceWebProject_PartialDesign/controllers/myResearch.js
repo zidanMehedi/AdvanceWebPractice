@@ -4,6 +4,14 @@ const model_topic= require.main.require('./models/model_topic');
 const model_group= require.main.require('./models/model_group');
 const model_user= require.main.require('./models/model_user');
 
+
+router.get('*',function(req,res,next){
+	if(req.cookies['username']!=null){
+		next();
+	}else{
+		res.redirect('/login');
+	}
+});
 router.get('/',function(req,res){
 	if(req.cookies['username']!=null)
 	{

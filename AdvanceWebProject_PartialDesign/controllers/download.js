@@ -3,6 +3,13 @@ var router = express.Router();
 const path = require('path');
 const model_files= require.main.require('./models/model_files');
 
+router.get('*',function(req,res,next){
+	if(req.cookies['username']!=null){
+		next();
+	}else{
+		res.redirect('/login');
+	}
+});
 router.get('/',function(req,res){
 	if(req.cookies['username']!=null)
 	{

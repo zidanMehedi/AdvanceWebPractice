@@ -4,7 +4,13 @@ const{check, validationResult}=require('express-validator/check');
 const{matchedData, sanitizeBody}=require('express-validator/filter');
 var router = express.Router();
 
-
+router.get('*',function(req,res,next){
+	if(req.cookies['username']!=null){
+		next();
+	}else{
+		res.redirect('/login');
+	}
+});
 router.get('/',
 	[check('opass','Old Password is Empty').isEmpty(),
 	check('npass','New Password is Empty').isEmpty(),
